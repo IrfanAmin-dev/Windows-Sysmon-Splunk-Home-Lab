@@ -28,6 +28,17 @@ I used the existing Community configuration from SwiftOnSecurity. I highly recom
 
 ### Failed Login Attempts
 ```splunk
-index=sysmon EventCode=4625
+index=sysmon-logs EventCode=4625
 | stats count by Account_Name, Source_Network_Address
 | where count > 5
+```
+
+### Failed Login Attempts
+```splunk
+index=sysmon_logs EventCode=1 Image="*powershell.exe" NOT(User="Administrator")
+| stats count by User, CommandLine
+```
+
+### Failed Login Attempts
+```splunk
+```
